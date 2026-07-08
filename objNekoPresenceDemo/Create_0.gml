@@ -1,9 +1,11 @@
 /// @description Initialize Discord
 
-#macro DISCORD_APP_ID "1518634182853529854" // change later to your discord application id!
+#macro DISCORD_APP_ID "1518957649729687664" // change later to your discord application id!
 
 ready = false;
 global.discord_initialized = false;
+global.discord_session_started = false;  
+global.discord_start_time = 0;            
 global.current_room = "";
 global.last_state = "";
 global.last_details = "";
