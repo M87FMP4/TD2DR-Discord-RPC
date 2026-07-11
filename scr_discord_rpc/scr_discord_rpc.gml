@@ -1,11 +1,6 @@
 function scr_discord_rpc()
 {
     if (!global.discord_initialized) exit;
-    if (!global.discord_session_started)
-    {
-        global.discord_start_time = date_current_datetime();
-        global.discord_session_started = true;
-    }
     
     var state_text = "";
     var details_text = "";
@@ -135,7 +130,7 @@ function scr_discord_rpc()
             
             state_text = "On map: " + level_name;
             
-            var character_name = scr_get_character_name();
+            var character_name = "";
             var is_exe = (global.character == CHARACTER_EXE);
             var character_image = "td2dr-exe";
             
@@ -215,7 +210,7 @@ function scr_discord_rpc()
         switch(room)
         {
             case room_waiting:
-                state_text = "Waiting for Round to End...";
+                state_text = "Waiting For Round To End...";
                 details_text = "";
                 large_image = "waiting";
                 large_text = "Waiting";
@@ -224,7 +219,7 @@ function scr_discord_rpc()
                 break;
                 
             case room_results:
-                state_text = "End of Round (Results)";
+                state_text = "End Of Round (Results)";
                 details_text = "";
                 large_image = "results";
                 large_text = "Results";
@@ -242,7 +237,7 @@ function scr_discord_rpc()
                 break;
                 
             case room_connecting:
-                state_text = "Connecting to Server...";
+                state_text = "Connecting To The Server...";
                 details_text = "";
                 large_image = "connecting";
                 large_text = "Connecting";
@@ -287,72 +282,5 @@ function scr_discord_rpc()
                 break;
         }
     }
-
-    if (state_text != global.last_state || details_text != global.last_details)
-    {
-        global.last_state = state_text;
-        global.last_details = details_text;
-
-        // ★★★ ГЛАВНОЕ ИСПРАВЛЕНИЕ ★★★
-        // Используем START (время начала), а не END!
-        if (global.discord_session_started && global.discord_start_time > 0)
-        {
-            // start = время начала игры (НЕ МЕНЯЕТСЯ)
-            // end = 0 (без окончания)
-            np_setpresence_timestamps(global.discord_start_time, 0, false);
-        }
-        else
-        {
-            np_setpresence_timestamps(0, 0, false);
-        }
-        
-        np_setpresence(details_text, state_text, large_image, small_image);
-    }
-}
-
-function scr_get_character_name()
-{
-    if (global.character == CHARACTER_EXE)
-    {
-        switch(global.exeCharacter)
-        {
-            case EXE_ORIGINAL:
-                return "Sonic.exe";
-
-            case EXE_CHAOS:
-                return "Chaos";
-
-            case EXE_EXETIOR:
-                return "Exetior";
-
-            case EXE_EXELLER: 
-                return "Exeller";
-
-            default:
-                return "Hander";
-        }
-    }
-
-    switch(global.character)
-    {
-        case CHARACTER_TAILS:
-            return "Tails";
-
-        case CHARACTER_KNUX:
-            return "Knuckles";
-
-        case CHARACTER_EGGMAN:
-            return "Eggman";
-
-        case CHARACTER_AMY:
-            return "Amy";
-
-        case CHARACTER_CREAM:
-            return "Cream";
-
-        case CHARACTER_SALLY:
-            return "Sally";
-    }
-
-    return "";
+    np_setpresence(details_text, state_text, large_image, small_image);
 }
