@@ -4,11 +4,7 @@
 
 ready = false;
 global.discord_initialized = false;
-global.discord_session_started = false;  
-global.discord_start_time = 0;            
 global.current_room = "";
-global.last_state = "";
-global.last_details = "";
 
 if (!np_initdiscord(DISCORD_APP_ID, true, np_steam_app_id_empty))
 {
