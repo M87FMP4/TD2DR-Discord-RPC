@@ -2,6 +2,7 @@
 
 - Discord Rich Presence for Sonic.EXE The Disaster 2D Remake
 - Made on **GameMaker LTS 2026**
+- **You need install Neko Presence Extension!**
 
 ## Features
 - Shows current level
