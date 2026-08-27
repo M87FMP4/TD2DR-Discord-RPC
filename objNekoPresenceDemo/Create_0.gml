@@ -6,9 +6,17 @@ ready = false;
 global.discord_initialized = false;
 global.current_room = "";
 
-if (!np_initdiscord(DISCORD_APP_ID, true, np_steam_app_id_empty))
+if (os_type == os_windows || os_type == os_macosx || os_type == os_linux)
 {
-	show_error("NekoPresence init fail.", true);
+    if (!np_initdiscord(DISCORD_APP_ID, true, np_steam_app_id_empty))
+    {
+        show_error("NekoPresence init fail.", true);
+    }
+    else
+    {
+        ready = true;
+        global.discord_initialized = true;
+    }
 }
 
 alarm[0] = room_speed * 5;
