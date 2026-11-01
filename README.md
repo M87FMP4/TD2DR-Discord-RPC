@@ -17,4 +17,4 @@
 - **Author:** [Faker](https://github.com/FakerNull0)
 - **Contributor:** [Assasin4568](https://github.com/Assaspuskin4568)
 
-*You can use this without credit, but it would be nice if you mention me*
+*Use it with credit us*
